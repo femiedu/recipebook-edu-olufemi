@@ -2,10 +2,14 @@
 
 {% block title %}{{ recipe.name }} - Recipe Book{% endblock %}
 
-{% block content %}
-  <h2>{{ recipe.name }}</h2>
+{% block page_heading %}Recipe Detail{% endblock %}
 
-  <h3>Ingredients</h3>
+{% block content %}
+  <h3>{{ recipe.name }}</h3>
+
+  <p><strong>Author:</strong> {{ recipe.author.name }}</p>
+
+  <h4>Ingredients</h4>
   <ul>
     {% for ing in recipe.ingredients.all %}
       <li>{{ ing.ingredient.name }} — {{ ing.quantity }}</li>
