@@ -5,9 +5,17 @@
 {% block page_heading %}Recipes{% endblock %}
 
 {% block content %}
+
+  {% if user.is_authenticated %}
+    <p><a href="{% url 'ledger:recipe-add' %}">Add Recipe</a></p>
+  {% endif %}
+
   <ul>
     {% for r in recipes %}
       <li><a href="{{ r.get_absolute_url }}">{{ r.name }}</a></li>
+    {% empty %}
+      <li>No recipes yet.</li>
     {% endfor %}
   </ul>
+
 {% endblock %}

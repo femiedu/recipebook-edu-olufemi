@@ -13,8 +13,24 @@
   <ul>
     {% for ing in recipe.ingredients.all %}
       <li>{{ ing.ingredient.name }} — {{ ing.quantity }}</li>
+    {% empty %}
+      <li>No ingredients yet.</li>
     {% endfor %}
   </ul>
+
+  <h4>Images</h4>
+  {% for img in recipe.images.all %}
+    <div>
+      <img src="{{ img.image.url }}" alt="{{ img.description }}" width="300">
+      <p>{{ img.description }}</p>
+    </div>
+  {% empty %}
+    <p>No images uploaded yet.</p>
+  {% endfor %}
+
+  {% if user.is_authenticated %}
+    <p><a href="{% url 'ledger:recipe-image-add' recipe.pk %}">Add Image</a></p>
+  {% endif %}
 
   <p><a href="{% url 'ledger:recipe-list' %}">Back to list</a></p>
 {% endblock %}

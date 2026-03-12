@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Add Image - Recipe Book{% endblock %}
+
+{% block page_heading %}Add Image{% endblock %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload Image</button>
+  </form>
+{% endblock %}
